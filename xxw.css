@@ -1,0 +1,93 @@
+/*---------通用-------------*/
+.xxw_over{
+    overflow: hidden;
+}
+.xxw_hide {
+    display: none;
+}
+.xxw_show {
+    display: block;
+}
+
+.xxw_ie6fixedTL {
+    position: fixed;
+    left: 0;
+    top: 0
+}
+
+.xxw_ie6fixedTR {
+    position: fixed;
+    right: 0;
+    top: 0
+}
+
+* html, * html body {
+    background-image: url(about:blank);
+    background-attachment: fixed;
+}
+
+* html .xxw_ie6fixedTL {
+    position: absolute;
+    left: expression(eval(document.documentElement.scrollLeft));
+    top: expression(eval(document.documentElement.scrollTop))
+}
+* html .xxw_ie6fixedTR {
+    position: absolute;
+    right: expression(eval(document.documentElement.scrollLeft));
+    top: expression(eval(document.documentElement.scrollTop))
+}
+
+/*---------Alert-----------*/
+.xxw_Alert {
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #dadada;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.xxw_Alert .alert_title {
+    line-height: 23px;
+    background-color: #71bbfe;
+    border-bottom: 1px solid #dadada;
+    font-weight: bolder;
+}
+
+.xxw_Alert .alert_title:before {
+    content: '';
+    margin-left: 10px;
+}
+
+.xxw_Alert .alert_title .alert_close {
+    float: right;
+    font-size: 12px;
+    margin-right: 10px;
+    display: inline-block;
+    cursor: pointer;
+
+}
+
+.xxw_Alert .alert_body {
+    line-height: 23px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.xxw_Alert .alert_body:before {
+    content: '';
+    margin-left: 15px;
+}
+/*--------Duilian----------*/
+.xxw_duilian{
+
+    font-size: 12px;
+}
+.xxw_duilian img{
+    border: 1px solid #dadada;
+}
+.xxw_duilian a{
+    display: block;
+    cursor: pointer;
+    text-align: center;
+}
