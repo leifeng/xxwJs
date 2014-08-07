@@ -4,63 +4,43 @@
     <meta charset="UTF-8">
     <title></title>
     <link href="xxw.css" rel="stylesheet">
-    <style>
-        .b {
-
-            width: 200px;
-            background-color: red;
-
-        }
-    </style>
 </head>
 <body>
-<div id="a">click</div>
-<div class="b">asdfasdf<p>asdfsadfsdf</p><h1>aaaaaaaaaaaa</h1></div>
-<ul>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1
-        <ul>
-            <li>2</li>
-            <li>2</li>
-            <li>2</li>   <li>2</li>
-
-        </ul>
-    </li>
-    <li>1<a>bbb</a></li>
-</ul>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<a id="a">aaa</a>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lcvsPMNypyVAFpko5zEhETem"></script>
 <script src="xxwJs.js"></script>
 <script>
-   // alert(typeof document.body.style.webkitBorderRadius === 'string')
+    // alert(typeof document.body.style.webkitBorderRadius === 'string')
 
-//    if(typeof document.body.classList.add){
-//        alert('aaa')
-//    }
-    //    xxw('#a').on('click', function () {
-    //        alert('aa')
-    //    })
+    //    if(typeof document.body.classList.add){
+    //        alert('aaa')
+    //    }
+    xxw('#a').on('click', function () {
+        xxw.Alert({
+            title: 'title',
+            body: 'xxxxxxxxxx56rfhgsdfghsdrgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgxxxxxxxxxxxxxx',
+            confirm: true,
+            cb: function (result) {
+                alert(result)
+            }
+        })
+    })
     //    xxw('#a').Alert({
     //        title: 'title',
     //        body: 'xxxxxxxxxx56rfhgsdfghsdrgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgxxxxxxxxxxxxxx'
     //    })
-    //    xxw.Alert({
-    //        title:'title',
-    //        body:'xxxxxxxxxx56rfhgsdfghsdrgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgxxxxxxxxxxxxxx'
-    //    })
+
     //  xxw('#b').addClass('a').addClass('b')
     //  xxw(document.getElementById('b')).addClass('aa')
     // xxw('#a').addClass('aa')
-//    xxw.DuiLian({
-//        lImg:'http://img1.0372.cn:83/201407/20140731055712.gif',
-//        rImg:'http://www.baidu.com/img/baidu_jgylogo3.gif?v=07135740.gif'
-//    })
-    xxw('.b').slideDown('fast',function(){
-        alert('aa')
-    });
+    //    xxw.DuiLian({
+    //        lImg:'http://img1.0372.cn:83/201407/20140731055712.gif',
+    //        rImg:'http://www.baidu.com/img/baidu_jgylogo3.gif?v=07135740.gif'
+    //    })
+    //    xxw('.b').slideDown('fast',function(){
+    //        alert('aa')
+    //    });
+
 </script>
 </body>
 </html>

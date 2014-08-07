@@ -99,20 +99,25 @@
                 });
                 return this;
             },
-            slideUp: function (speed,cb) {
-                var my = this;
-                my.each(function () {
-                    my.animation(this, 'height', 0, this.offsetHeight, my.speed(speed),cb)
+            css:function(css){
+                this.each(function () {
+                    this.style.cssText=css;
                 })
             },
-            slideDown: function (speed,cb) {
+            slideUp: function (speed, cb) {
+                var my = this;
+                my.each(function () {
+                    my.animation(this, 'height', 0, this.offsetHeight, my.speed(speed), cb)
+                })
+            },
+            slideDown: function (speed, cb) {
                 var my = this;
                 my.each(function () {
                     xxw(this).addClass('xxw_show').addClass('xxw_over');
-                    my.animation(this, 'height', this.offsetHeight, 0, my.speed(speed),cb)
+                    my.animation(this, 'height', this.offsetHeight, 0, my.speed(speed), cb)
                 })
             },
-            animation: function (obj, attr, val, oval, speed,cb) {
+            animation: function (obj, attr, val, oval, speed, cb) {
                 var _attr = oval;
                 var t = setInterval(function () {
                     if (_attr === val) {
@@ -130,24 +135,18 @@
                     obj.style[attr] = _attr + 'px';
                 }, speed);
             },
-            speed:function(speed){
-                switch (speed){
-                   case 'fast':
+            speed: function (speed) {
+                switch (speed) {
+                    case 'fast':
                         return 10;
-                    break;
+                        break;
                     case 'slow':
                         return 30;
-                    break;
+                        break;
                     case 'normal':
                         return 20;
-                    break;
+                        break;
                 }
-            },
-            Alert: function (options) {
-                this.each(
-                    function () {
-                        xxw.Alert(options, this);
-                    })
             },
             isObj: function () {
                 return (typeof this.elements.length !== 'undefined');
@@ -176,15 +175,22 @@
         xxw.Ajax = function (options, cb) {
             var xmlHttp;
             var defaults = {
-                data: '',
-                url: '',
-                method: 'get',
-                async: false
+                    data: null,
+                    url: '',
+                    method: 'get',
+                    async: false
 
-            }
+                }
+                , _data = ''
+                , _method
+                , _uri;
             this.extend(defaults, options);
+            _method = defaults.method.toLocaleUpperCase();
             if (window.XMLHttpRequest) {
                 xmlHttp = new XMLHttpRequest();
+                if (xmlHttp.overrideMimeType) {
+                    xmlHttp.overrideMimeType('text/xml');
+                }
             } else {
                 try {
                     xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
@@ -192,64 +198,102 @@
                     xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
                 }
             }
-            if (xmlHttp) {
-                var _method = defaults.method.toLowerCase();
-                var _uri;
-                if (_method === 'get') {
-                    _uri = defaults.url + '?' + defaults.data;
-                }
-                xmlHttp.open(_method, _uri, defaults.async);
-                xmlHttp.onreadystatechange = function () {
-                    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                        cb(xmlHttp.responseText);
-                    } else {
-                        cb(xmlHttp.status);
+            if (!xmlHttp) {
+                alert("XMLHttpRequest对象创建失败!");
+                return;
+            }
+            if (defaults.data) {
+                if (typeof defaults.data === "object") {
+                    for (var key in defaults.data) {
+                        _data += key + '=' + defaults.data[key] + '&';
                     }
-                };
-                if (_method === 'get') {
-                    xmlHttp.send();
-                } else {
-                    xmlHttp.send(defaults.data)
+                    _data = _data.substring(0, _data.length - 1);
                 }
             }
+            if (_method === 'GET') {
+                _uri = defaults.url + '?' + _data;
+            } else {
+                _uri = defaults.url;
+            }
+            xmlHttp.open(_method, _uri, defaults.async);
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                    cb(xmlHttp.responseText);
+                } else {
+                    cb(xmlHttp.status);
+                }
+            };
+            if (_method === 'GET') {
+                xmlHttp.send(null);
+            } else {
+                xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xmlHttp.send(_data)
+            }
+
         };
         //Alert
-        xxw.Alert = function (options, obj) {
+        xxw.Alert = function (options) {
             var defaults = {
+                width: 300,
+                height: 300,
                 title: '',
-                body: ''
+                body: '',
+                confirm: false,  //是否需要确认
+                cb: null
             };
-            xxw.extend(defaults, options);
-            var _panel, _a;
-            if (!document.getElementById('xxw_Alert')) {
-                _panel = document.createElement('div');
-                _a = document.createElement('a');
-                var _title = document.createElement('div');
-                var _body = document.createElement('div');
-                _panel.className = 'xxw_Alert xxw_hide';
-                _panel.id = 'xxw_Alert';
-                _a.className = 'alert_close';
-                _a.textContent = '关闭';
-                _title.className = 'alert_title';
-                _title.textContent = defaults.title;
-                _body.className = 'alert_body';
-                _body.textContent = defaults.body;
-                _title.appendChild(_a);
-                _panel.appendChild(_title);
-                _panel.appendChild(_body);
-                document.body.appendChild(_panel);
-            }
-            xxw.addEvent(_a, 'click', function () {
-                xxw(_panel).addClass('xxw_hide');
-                xxw(_panel).delClass('xxw_show');
-            });
-            if (arguments.length === 1) {
-                xxw(_panel).addClass('xxw_show');
+            this.extend(defaults, options);
+            var main = document.getElementById('xxw_Alert'),
+                left = (xxw.other.bodyW / 2 - defaults.width / 2),
+                title, body, a,confirm,yes,no,mainObj;
+            if (!main) {
+                main = document.createElement('div');
+                title = document.createElement('div');
+                body = document.createElement('div');
+                a = document.createElement('a');
+                mainObj=xxw(main);
+                main.id = 'xxw_Alert';
+                main.className = 'xxw_Alert';
+                title.className = 'alert_title';
+                a.className = 'alert_close';
+                body.className = 'alert_body';
+                a.textContent = '关闭';
+                title.textContent = defaults.title;
+                title.appendChild(a);
+                body.innerHTML = defaults.body;
+                mainObj.css( 'width:' + defaults.width + 'px;height:' + defaults.height + 'px+;left:' + left + 'px');
+                mainObj.addChild(title).addChild(body);
+                if (defaults.confirm) {
+                    if(typeof defaults.cb!=='function'){
+                        alert('错误：交互功能需要回调cb');
+                        return;
+                    }
+                    confirm=document.createElement('div');
+                    yes=document.createElement('a');
+                    no=document.createElement('a');
+                    confirm.className='alert_confirm';
+                    yes.className='yes';
+                    no.className='no';
+                    yes.textContent='确定';
+                    no.textContent='取消';
+                    confirm.appendChild(yes);
+                    confirm.appendChild(no);
+                    mainObj.addChild(confirm);
+                    xxw.addEvent(yes, 'click', function () {
+                        mainObj.addClass('xxw_hide').delClass('xxw_show');
+                        defaults.cb('yes');
+                    });
+                    xxw.addEvent(no, 'click', function () {
+                        mainObj.addClass('xxw_hide').delClass('xxw_show');
+                        defaults.cb('no');
+                    });
+                }
+                document.body.appendChild(main);
+                xxw.addEvent(a, 'click', function () {
+                    mainObj.addClass('xxw_hide').delClass('xxw_show');
+                });
             } else {
-                xxw.addEvent(obj, 'click', function () {
-                    xxw(_panel).addClass('xxw_show');
-                    xxw(_panel).delClass('xxw_hide');
-                })
+                mainObj=xxw(main);
+                mainObj.addClass('xxw_show').delClass('xxw_hide');
             }
         };
         //duilian
@@ -299,8 +343,7 @@
                 time: 3000,
                 delay: 1000
             }
-        }
-
+        };
         xxw.Selector = function (selector, context) {
             var _selector = selector.substring(1);
             var arr = [];
@@ -342,16 +385,19 @@
                 a[attr] = b[attr];
             }
         };
+        xxw.other = {
+            bodyW: document.body.clientWidth,
+            bodyH: document.body.clientHeight
+        }
         //fix Event
         xxw.fixEvent = function (event) {
             var originalEvent = event;
-            ev = {
+            var ev = {
                 originalEvent: originalEvent
             };
             var props = "altKey attrChange attrName bubbles button cancelable charCode clientX clientY ctrlKey currentTarget data detail eventPhase fromElement handler keyCode metaKey newValue originalTarget pageX pageY prevValue relatedNode relatedTarget screenX screenY shiftKey srcElement target timeStamp toElement type view wheelDelta which".split(" ");
             for (var i = props.length; i; i--)
                 ev[props[i]] = originalEvent[props[i]];
-            ev.timeStamp = ev.timeStamp || now();
             ev.target = ev.target || ev.srcElement;
             ev.preventDefault = function () {
                 if (originalEvent.preventDefault)
@@ -384,4 +430,5 @@
         return xxw;
     })();
     window.xxw = xxw;
-})();
+})
+();

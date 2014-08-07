@@ -1,10 +1,12 @@
 /*---------通用-------------*/
-.xxw_over{
+.xxw_over {
     overflow: hidden;
 }
+
 .xxw_hide {
     display: none;
 }
+
 .xxw_show {
     display: block;
 }
@@ -31,6 +33,7 @@
     left: expression(eval(document.documentElement.scrollLeft));
     top: expression(eval(document.documentElement.scrollTop))
 }
+
 * html .xxw_ie6fixedTR {
     position: absolute;
     right: expression(eval(document.documentElement.scrollLeft));
@@ -41,17 +44,19 @@
 .xxw_Alert {
     font-size: 14px;
     background-color: #fff;
-    border: 1px solid #dadada;
     position: absolute;
     top: 50%;
+    box-shadow: 0 3px 6px 2px #ACACAC;
     left: 50%;
 }
 
 .xxw_Alert .alert_title {
     line-height: 23px;
-    background-color: #71bbfe;
+    background-color: #3498DB;
+    border: 1px solid #3498DB;
     border-bottom: 1px solid #dadada;
     font-weight: bolder;
+    color: #fff;
 }
 
 .xxw_Alert .alert_title:before {
@@ -69,7 +74,10 @@
 }
 
 .xxw_Alert .alert_body {
+    border: 1px solid #dadada;
+    border-bottom: 0;
     line-height: 23px;
+    padding-top: 5px;
     word-wrap: break-word;
     word-break: break-all;
 }
@@ -78,16 +86,56 @@
     content: '';
     margin-left: 15px;
 }
+
+.xxw_Alert .alert_confirm {
+    border: 1px solid #dadada;
+    border-top: 0;
+    text-align: center;
+    line-height: 50px;
+}
+
+.xxw_Alert .alert_confirm a {
+    cursor: pointer;
+    display: inline-block;
+    width: 80px;
+    height: 25px;
+    line-height: 25px;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    margin-left: 10px;
+    border-radius:5px ;
+}
+
+.xxw_Alert .alert_confirm a.yes {
+    background-color: #2ecc71;
+}
+
+.xxw_Alert .alert_confirm a.yes:hover {
+    background-color: #55d98d;
+}
+
+.xxw_Alert .alert_confirm a.no {
+    background-color: #e74c3c;
+}
+
+.xxw_Alert .alert_confirm a.no:hover {
+    background-color: #ec7063;
+}
+
 /*--------Duilian----------*/
-.xxw_duilian{
+.xxw_duilian {
 
     font-size: 12px;
 }
-.xxw_duilian img{
+
+.xxw_duilian img {
     border: 1px solid #dadada;
 }
-.xxw_duilian a{
+
+.xxw_duilian a {
     display: block;
     cursor: pointer;
     text-align: center;
 }
+
