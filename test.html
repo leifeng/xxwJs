@@ -6,41 +6,50 @@
     <link href="xxw.css" rel="stylesheet">
 </head>
 <body>
-<a id="a">aaa</a>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lcvsPMNypyVAFpko5zEhETem"></script>
+<div id="lm" style="width: 200px;height:200px"></div>
+<div id="lb" style="width: 200px;height:200px;margin: 0 auto"></div>
+<div style="width: 50px ;margin: 10px auto;color: red"><a id="a">弹出框</a></div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</body>
 <script src="xxwJs.js"></script>
 <script>
-    // alert(typeof document.body.style.webkitBorderRadius === 'string')
 
-    //    if(typeof document.body.classList.add){
-    //        alert('aaa')
-    //    }
     xxw('#a').on('click', function () {
-        xxw.Alert({
+        xxw.alert({
             title: 'title',
             body: 'xxxxxxxxxx56rfhgsdfghsdrgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgxxxxxxxxxxxxxx',
             confirm: true,
+            mask: true,
             cb: function (result) {
                 alert(result)
             }
         })
     })
-    //    xxw('#a').Alert({
-    //        title: 'title',
-    //        body: 'xxxxxxxxxx56rfhgsdfghsdrgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgxxxxxxxxxxxxxx'
-    //    })
 
-    //  xxw('#b').addClass('a').addClass('b')
-    //  xxw(document.getElementById('b')).addClass('aa')
-    // xxw('#a').addClass('aa')
-    //    xxw.DuiLian({
-    //        lImg:'http://img1.0372.cn:83/201407/20140731055712.gif',
-    //        rImg:'http://www.baidu.com/img/baidu_jgylogo3.gif?v=07135740.gif'
-    //    })
-    //    xxw('.b').slideDown('fast',function(){
-    //        alert('aa')
-    //    });
+//    xxw.duiLian({
+//        lImg: 'http://img1.0372.cn:83/201407/20140731055712.gif',
+//        rImg: 'http://img1.0372.cn:83/201407/20140731055712.gif',
+//        lurl:'#',
+//        rurl:'#'
+//
+//    })
 
+//    xxw('#lm').laMu({
+//        src: 'http://bbs.0372.cn/data/attachment/forum/201407/30/095650nnittctkn04ecxzi.png.thumb.jpg',
+//        url: 'http://baidu.com'
+//    })
+
+//    xxw('#lb').lunBuo({
+//        img: [
+//            {src: 'http://img1.0372.cn:83/201408/20140806104345.jpg', txt: '123123',url:'#'},
+//            {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: '3333333333333333',url:'#'},
+//            {src: 'http://img1.0372.cn:83/201408/20140809114152.jpg', txt: 'asdfasdf',url:'#'},
+//            {src: 'http://img1.0372.cn:83/201408/20140809112623.jpg', txt: 'asdf',url:'#'},
+//            {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: 'asdfasdf',url:'#'}
+//        ],
+//        style: 1
+//    })
 </script>
-</body>
 </html>
