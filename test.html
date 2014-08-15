@@ -9,9 +9,8 @@
 <div id="lm" style="width: 200px;height:200px"></div>
 <div id="lb" style="width: 200px;height:200px;margin: 0 auto"></div>
 <div style="width: 50px ;margin: 10px auto;color: red"><a id="a">弹出框</a></div>
+<input value="a" id="inp">
 
-
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 <!--<div id="slider1" class="xxw_sliderF">-->
     <!--<div class="xxw_sliderC"><img src="http://img1.0372.cn:83/201408/20140806055740.jpg">-->
@@ -21,15 +20,16 @@
     <!--<div class="xxw_sliderC"><img src="http://img1.0372.cn:83/201408/20140809112623.jpg">-->
     <!--</div>-->
 <!--</div>-->
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
 
 <div id="nav"></div>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
 </body>
 <script src="xxwJs.js"></script>
 <script>
-
-//            xxw('#a').on('click', function () {
+//window.open('http://baidu.com','_blank')
+ //           xxw('#a').on('click', function () {
+ //               xxw.href('http://baidu.com');
 //                xxw.alert({
 //                    title: 'title',
 //                    body: 'xxxxxxxxxx56rfhgsdfghsdrgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgxxxxxxxxxxxxxx',
@@ -39,7 +39,7 @@
 //                        alert(result)
 //                   }
 //                })
-//            })
+ //           })
 
 //            xxw.duiLian({
 //                lImg: 'http://img1.0372.cn:83/201407/20140731055712.gif',
@@ -54,19 +54,19 @@
 //            url: 'http://baidu.com'
 //        })
 
-            xxw('#lb').lunBuo({
-                img: [
-                    {src: 'http://img1.0372.cn:83/201408/20140806104345.jpg', txt: '123123',url:'#'},
-                    {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: '3333333333333333',url:'#'},
-                    {src: 'http://img1.0372.cn:83/201408/20140809114152.jpg', txt: 'asdfasdf',url:'#'},
-                    {src: 'http://img1.0372.cn:83/201408/20140809112623.jpg', txt: 'asdf',url:'#'},
-                    {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: 'asdfasdf',url:'#'}
-                ],
-                style: 1,
-                showTitle:false,
-                showA:false,
-                time:4000
-            })
+//            xxw('#lb').lunBuo({
+//                img: [
+//                    {src: 'http://img1.0372.cn:83/201408/20140806104345.jpg', txt: '123123',url:'#'},
+//                    {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: '3333333333333333',url:'#'},
+//                    {src: 'http://img1.0372.cn:83/201408/20140809114152.jpg', txt: 'asdfasdf',url:'#'},
+//                    {src: 'http://img1.0372.cn:83/201408/20140809112623.jpg', txt: 'asdf',url:'#'},
+//                    {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: 'asdfasdf',url:'#'}
+//                ],
+//                style: 1,
+//                showTitle:false,
+//                showA:false,
+//                time:4000
+//            })
 
 //            var p = new xxw.ps;
 //            p.sub('b', function (a) {
@@ -81,5 +81,13 @@
 //    list:[{url:'#',txt:'1'},{url:'#',txt:'2'},{url:'#',txt:'3'},{url:'#',txt:'4'},{url:'#',txt:'5'},{url:'#',txt:'6'}],
 //    r:100
 //    })
+
+
+    xxw.json({
+        url:'http://esf.0372.cn/var/action.ashx',
+        data:{action:'forindex'}
+    },function(data){
+        console.log(data)
+    })
 </script>
 </html>
