@@ -3,91 +3,154 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link href="xxw.css" rel="stylesheet">
+    <link href="reset.css" rel="stylesheet">
+    <link href="css/xxw.css" rel="stylesheet">
+    <style>
+        #z ul {
+            float: left;
+
+        }
+
+        #c {
+            width: 2000px;
+        }
+
+        #z ul li {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+        }
+
+        #z img {
+            width: 100%;
+            height: 100%
+        }
+    </style>
 </head>
 <body>
 <div id="lm" style="width: 200px;height:200px"></div>
-<div id="lb" style="width: 200px;height:200px;margin: 0 auto"></div>
+<div id="lb" style="width: 300px;height:300px;margin: 0 auto"></div>
 <div style="width: 50px ;margin: 10px auto;color: red"><a id="a">弹出框</a></div>
 <input value="a" id="inp">
 
-
+<div id="gd" style="width: 500px;height: 300px"></div>
+<div id="gd2" style="width: 100px;height: 500px"></div>
 <!--<div id="slider1" class="xxw_sliderF">-->
-    <!--<div class="xxw_sliderC"><img src="http://img1.0372.cn:83/201408/20140806055740.jpg">-->
-    <!--</div>-->
-    <!--<div class="xxw_sliderC"><img src="http://img1.0372.cn:83/201408/20140809114152.jpg">-->
-    <!--</div>-->
-    <!--<div class="xxw_sliderC"><img src="http://img1.0372.cn:83/201408/20140809112623.jpg">-->
-    <!--</div>-->
+<!--<div class="xxw_sliderC"><img src="http://img1.0372.cn:83/201408/20140806055740.jpg">-->
+<!--</div>-->
+<!--<div class="xxw_sliderC"><img src="http://img1.0372.cn:83/201408/20140809114152.jpg">-->
+<!--</div>-->
+<!--<div class="xxw_sliderC"><img src="http://img1.0372.cn:83/201408/20140809112623.jpg">-->
+<!--</div>-->
 <!--</div>-->
 
 
 <div id="nav"></div>
-
+<!--<div style="width: 980px;position: relative;overflow: hidden;height: 300px" id="z">-->
+    <!--<div style="position: absolute" id="c">-->
+        <!--<ul>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140806055740.jpg"></li>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140806055740.jpg"></li>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140806055740.jpg"></li>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140809112623.jpg"></li>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140809112623.jpg"></li>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140809112623.jpg"></li>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140809112623.jpg"></li>-->
+        <!--</ul>-->
+        <!--<ul>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140806055740.jpg"></li>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140806055740.jpg"></li>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140806055740.jpg"></li>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140809112623.jpg"></li>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140809112623.jpg"></li>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140809112623.jpg"></li>-->
+            <!--<li><img src="http://img1.0372.cn:83/201408/20140809112623.jpg"></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</div>-->
 </body>
 <script src="xxwJs.js"></script>
 <script>
-//window.open('http://baidu.com','_blank')
- //           xxw('#a').on('click', function () {
- //               xxw.href('http://baidu.com');
-//                xxw.alert({
-//                    title: 'title',
-//                    body: 'xxxxxxxxxx56rfhgsdfghsdrgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgxxxxxxxxxxxxxx',
-//                   confirm: true,
-//                   mask: true,
-//                   cb: function (result) {
-//                        alert(result)
-//                   }
-//                })
- //           })
+    //window.open('http://baidu.com','_blank')
+    //           xxw('#a').on('click', function () {
+    //               xxw.href('http://baidu.com');
+    //                xxw.alert({
+    //                    title: 'title',
+    //                    body: 'xxxxxxxxxx56rfhgsdfghsdrgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgxxxxxxxxxxxxxx',
+    //                   confirm: true,
+    //                   mask: true,
+    //                   cb: function (result) {
+    //                        alert(result)
+    //                   }
+    //                })
+    //           })
 
-//            xxw.duiLian({
-//                lImg: 'http://img1.0372.cn:83/201407/20140731055712.gif',
-//                rImg: 'http://img1.0372.cn:83/201407/20140731055712.gif',
-//                lurl:'#',
-//                rurl:'#'
-//
-//            })
+    //            xxw.duiLian({
+    //                lImg: 'http://img1.0372.cn:83/201407/20140731055712.gif',
+    //                rImg: 'http://img1.0372.cn:83/201407/20140731055712.gif',
+    //                lurl:'#',
+    //                rurl:'#'
+    //
+    //            })
 
-//        xxw('#lm').laMu({
-//            src: 'http://bbs.0372.cn/data/attachment/forum/201407/30/095650nnittctkn04ecxzi.png.thumb.jpg',
-//            url: 'http://baidu.com'
-//        })
+    //        xxw('#lm').laMu({
+    //            src: 'http://bbs.0372.cn/data/attachment/forum/201407/30/095650nnittctkn04ecxzi.png.thumb.jpg',
+    //            url: 'http://baidu.com'
+    //        })
 
-//            xxw('#lb').lunBuo({
-//                img: [
-//                    {src: 'http://img1.0372.cn:83/201408/20140806104345.jpg', txt: '123123',url:'#'},
-//                    {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: '3333333333333333',url:'#'},
-//                    {src: 'http://img1.0372.cn:83/201408/20140809114152.jpg', txt: 'asdfasdf',url:'#'},
-//                    {src: 'http://img1.0372.cn:83/201408/20140809112623.jpg', txt: 'asdf',url:'#'},
-//                    {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: 'asdfasdf',url:'#'}
-//                ],
-//                style: 1,
-//                showTitle:false,
-//                showA:false,
-//                time:4000
-//            })
+                    xxw('#lb').lunBuo({
+                        img: [
+                            {src: 'http://img1.0372.cn:83/201408/20140806104345.jpg', txt: '123123',url:'#'},
+                            {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: '3333333333333333',url:'#'},
+                            {src: 'http://img1.0372.cn:83/201408/20140809114152.jpg', txt: 'asdfasdf',url:'#'},
+                            {src: 'http://img1.0372.cn:83/201408/20140809112623.jpg', txt: 'asdf',url:'#'},
+                            {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: 'asdfasdf',url:'#'}
+                        ],
+                        style: 2,
+                        time:4000
+                    })
 
-//            var p = new xxw.ps;
-//            p.sub('b', function (a) {
-//                alert(a)
-//            })
-//            p.pub('a','adsfsadf')
-//            p.pub('b','adsfsadf')
+    //            var p = new xxw.ps;
+    //            p.sub('b', function (a) {
+    //                alert(a)
+    //            })
+    //            p.pub('a','adsfsadf')
+    //            p.pub('b','adsfsadf')
 
-   // xxw('#slider1').slider(980, 950);
+    // xxw('#slider1').slider(980, 950);
 
-//xxw('#nav').circleNav({
-//    list:[{url:'#',txt:'1'},{url:'#',txt:'2'},{url:'#',txt:'3'},{url:'#',txt:'4'},{url:'#',txt:'5'},{url:'#',txt:'6'}],
-//    r:100
-//    })
+    //xxw('#nav').circleNav({
+    //    list:[{url:'#',txt:'1'},{url:'#',txt:'2'},{url:'#',txt:'3'},{url:'#',txt:'4'},{url:'#',txt:'5'},{url:'#',txt:'6'}],
+    //    r:100
+    //    })
 
 
-    xxw.json({
-        url:'http://esf.0372.cn/var/action.ashx',
-        data:{action:'forindex'}
-    },function(data){
-        console.log(data)
-    })
+    //    xxw.json({
+    //        url:'http://esf.0372.cn/var/action.ashx',
+    //        data:{action:'forindex'}
+    //    },function(data){
+    //        console.log(data)
+    //    })
+
+    //    xxw('#gd').gundong({
+    //        list: [
+    //            {src: 'http://img1.0372.cn:83/201408/20140806104345.jpg', txt: '123123', url: '#'},
+    //            {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: '3333333333333333', url: '#'},
+    //            {src: 'http://img1.0372.cn:83/201408/20140809114152.jpg', txt: 'asdfasdf', url: '#'},
+    //            {src: 'http://img1.0372.cn:83/201408/20140809112623.jpg', txt: 'asdf', url: '#'},
+    //            {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: 'asdfasdf', url: '#'}
+    //        ]
+    //    })
+    //    xxw('#gd2').gundong({
+    //        list: [
+    //            {src: 'http://img1.0372.cn:83/201408/20140806104345.jpg', txt: '123123', url: '#'},
+    //            {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: '3333333333333333', url: '#'},
+    //            {src: 'http://img1.0372.cn:83/201408/20140809114152.jpg', txt: 'asdfasdf', url: '#'},
+    //            {src: 'http://img1.0372.cn:83/201408/20140809112623.jpg', txt: 'asdf', url: '#'},
+    //            {src: 'http://img1.0372.cn:83/201408/20140806055740.jpg', txt: 'asdfasdf', url: '#'}
+    //        ],
+    //        dir:'top'
+    //    })
 </script>
 </html>
