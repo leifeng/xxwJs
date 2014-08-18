@@ -493,7 +493,7 @@
             this.aArr = [];
             this.imgArr = [];
             this.num = options.img.length;
-            if(!this.num){
+            if (!this.num) {
                 return;
             }
             obj.addClass('xxw_relative').addClass('xxw_over');
@@ -677,59 +677,112 @@
     fn.gundong = function (options) {
         var defaults = {
             dir: 'left',//left  up
-            speed: 3000,
+            time: 200,
             list: [
                 {url: '', src: '', txt: ''}
             ],
-            imgW:100,
-            imgH:100
+            w: 100,
+            h: 100,
+            autoRun: true
         }
         this.extend(defaults, options);
         return new fn.gundong.prototype.init(this, defaults);
     }
     fn.gundong.prototype = {
-        init: function (obj,options) {
-            this.options=options;
-            this.obj=obj;
-            obj.addClass('xxw_over').addClass('xxw_relative');
+        init: function (obj, options) {
+            this.options = options;
+            this.obj = obj;
+            obj.addClass('xxw_over');
             this.make();
         },
-        make:function(){
+        make: function () {
+            var n = this.options.list.length;
+            var total;
+            var div = document.createElement('div');
             var ul = document.createElement('ul');
-            ul.className='xxw_gundong_ul xxw_absolute';
-            this.obj.addChild(ul);
-            var n=this.options.list.length;
-            for(var i= 0;i<n;i++){
-                var li=document.createElement('li');
-                var img=document.createElement('img');
-                var title=document.createElement('div');
-                var a=document.createElement('a');
+            div.appendChild(ul);
+            this.obj.addChild(div);
+            this.div=div;
+            ul.className = 'xxw_gundong_ul';
+            div.className = 'xxw_gundong_div';
+            if (this.options.dir === 'left') {
+                div.style.cssText = 'width:' + (n * (this.options.w + 20) * 2) + 'px';
+                total = this.options.list.length * (this.options.w + 20);
+            } else {
+                div.style.cssText = 'height:' + (n * (this.options.h + 20) * 2) + 'px';
+                total= this.options.list.length * (this.options.h + 20)
+            }
+            for (var i = 0; i < n; i++) {
+                var li = document.createElement('li');
+                var img = document.createElement('img');
+                var title = document.createElement('div');
+                var a = document.createElement('a');
                 a.appendChild(img);
                 a.appendChild(title);
                 li.appendChild(a);
                 ul.appendChild(li);
-                li.className='xxw_gundong_li';
-                a.className='xxw_gundong_a';
-                img.className='xxw_gundong_img';
-                title.className='xxw_gundong_title';
-                li.style.cssText='width:'+(this.options.imgW+20)+'px';
-                img.src=this.options.list[i].src;
-                img.width=this.options.imgW;
-                img.height=this.options.imgH;
-                a.setAttribute('href',this.options.list[i].url);
-                title.textContent=title.innerText=this.options.list[i].txt;
-
+                li.className = 'xxw_gundong_li';
+                a.className = 'xxw_gundong_a';
+                img.className = 'xxw_gundong_img';
+                title.className = 'xxw_gundong_title';
+                li.style.cssText = 'width:' + this.options.w + 'px;height:' + this.options.h + 'px';
+                img.src = this.options.list[i].src;
+                a.setAttribute('href', this.options.list[i].url);
+                title.textContent = title.innerText = this.options.list[i].txt;
             }
-            if(this.options.dir==='left'){
-                ul.style.cssText='width:'+(this.options.imgW+20+20)*n*2+'px;'
-            }else{
-                ul.style.cssText='height:'+(this.options.imgH+20+20)*n*2+'px;'
+            var ul2 = ul.cloneNode(true);
+            div.appendChild(ul2);
+            if (this.options.autoRun) {
+                this.autoRun(ul, ul2,total);
             }
+        },
+        autoRun: function (ul, ul2,n) {
+            var _this=this;
+            if (this.options.dir === 'left') {
+                n= this.options.list.length * (this.options.w + 20);
+            } else {
+                n= this.options.list.length * (this.options.h + 20)
+            }
+            var time=this.options.time;
+            var speed=n/time;
+            var temp = 0;
+            var t = -1;
+            var stop=false;
+            var gd = function () {
+                if(t!=-1){
+                    clearTimeout(t);
+                }
+                 _this.run(ul,ul2,temp);
+                if (temp === -n) {
+                    temp = 0;
 
+                }else{
+                    temp=temp-speed;
+                }
+                if(!stop){
+                    t = setTimeout(gd,time);
+                }
+
+            };
+            gd();
+            xxw.addEvent(_this.div,'mouseover',function(){
+               stop=true;
+            });
+            xxw.addEvent(_this.div,'mouseleave',function(){
+                stop=false;
+                gd();
+            });
+        },
+        run:function(ul,ul2,css){
+            if (this.options.dir === 'left') {
+                ul.style.cssText = ul2.style.cssText = 'left:' + css + 'px';
+            } else {
+                ul.style.cssText = ul2.style.cssText = 'top:' + css + 'px';
+            }
         }
 
-    }
-    fn.gundong.prototype.init.prototype=fn.gundong.prototype;
+    };
+    fn.gundong.prototype.init.prototype = fn.gundong.prototype;
     //圆形导航
     fn.circleNav = function (options) {
         var defaults = {
@@ -852,7 +905,7 @@
     xxw.getQuery = function (name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
         var r = window.location.search.substr(1).match(reg);
-        if (r != null) return unescape(r[2]);
+        if (r != null) return encodeURI(r[2]);
         return null;
     };
     xxw.href = function (url) {
@@ -868,7 +921,32 @@
         var ev = document.createEvent('MouseEvents');
         ev.initEvent('click', false, true);
         a.dispatchEvent(ev);
-    }
+    };
+    xxw.cookie = {
+        get: function (key) {
+            var _cookie = document.cookie;
+            if (_cookie.length > 0) {
+                var start = _cookie.indexOf(key + '=');
+                if (start != -1) {
+                    var begin = key.length + 1;
+                    var end = _cookie.indexOf(";", begin);
+                    if (end === -1) end = _cookie.length;
+                    return encodeURI(_cookie.substring(begin, end));
+                }
+                return null;
+            }
+        },
+        set: function (key, val, time) {
+            var ExpireDate = new Date();
+            ExpireDate.setTime(ExpireDate.getTime() + (time * 24 * 3600 * 1000));
+            document.cookie = key + '=' + decodeURI(val) + ';expires=' + (time == null ? '' : ExpireDate.toUTCString()) + ';';
+        },
+        del: function (key) {
+            if (this.get(key)) {
+                document.cookie = key + "=" + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+            }
+        }
+    };
     //extend
     xxw.extend = fn.extend = function (a, b) {
         for (var key in b) {
