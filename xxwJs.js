@@ -92,7 +92,7 @@
                 if (this.classList) {
                     this.classList.add(str);
                 } else {
-                    this.className = this.className + ' ' + str;
+                    this.className = str+' '+this.className;
                 }
             });
             return this;
@@ -304,9 +304,9 @@
                 script.parentNode.removeChild(script);
             }, 100)
 
-        }
+        };
         script.src = defaults.url + '?callback=' + cbName + '&' + _data;
-    }
+    };
     //Alert
     xxw.alert = function (options) {
         xxw.other.mouseScrollStop();
@@ -676,14 +676,17 @@
     //图片滚动
     fn.gundong = function (options) {
         var defaults = {
-            dir: 'left',//left  up
+            dir: 'left',//left  up right down
             time: 200,
             list: [
                 {url: '', src: '', txt: ''}
             ],
             w: 100,
             h: 100,
-            autoRun: true
+            autoRun: true,
+            type:'line',
+            left:null,
+            right:null
         }
         this.extend(defaults, options);
         return new fn.gundong.prototype.init(this, defaults);
@@ -692,26 +695,18 @@
         init: function (obj, options) {
             this.options = options;
             this.obj = obj;
-            obj.addClass('xxw_over');
+            obj.addClass('xxw_over').addClass('xxw_relative');
             this.make();
         },
         make: function () {
             var n = this.options.list.length;
-            var total;
             var div = document.createElement('div');
             var ul = document.createElement('ul');
             div.appendChild(ul);
             this.obj.addChild(div);
-            this.div=div;
+            this.div = div;
             ul.className = 'xxw_gundong_ul';
             div.className = 'xxw_gundong_div';
-            if (this.options.dir === 'left') {
-                div.style.cssText = 'width:' + (n * (this.options.w + 20) * 2) + 'px';
-                total = this.options.list.length * (this.options.w + 20);
-            } else {
-                div.style.cssText = 'height:' + (n * (this.options.h + 20) * 2) + 'px';
-                total= this.options.list.length * (this.options.h + 20)
-            }
             for (var i = 0; i < n; i++) {
                 var li = document.createElement('li');
                 var img = document.createElement('img');
@@ -730,55 +725,80 @@
                 a.setAttribute('href', this.options.list[i].url);
                 title.textContent = title.innerText = this.options.list[i].txt;
             }
-            var ul2 = ul.cloneNode(true);
-            div.appendChild(ul2);
-            if (this.options.autoRun) {
-                this.autoRun(ul, ul2,total);
-            }
+            this.setting(div, ul);
+
         },
-        autoRun: function (ul, ul2,n) {
-            var _this=this;
-            if (this.options.dir === 'left') {
-                n= this.options.list.length * (this.options.w + 20);
-            } else {
-                n= this.options.list.length * (this.options.h + 20)
-            }
-            var time=this.options.time;
-            var speed=n/time;
-            var temp = 0;
+        autoRun: function (temp, n) {
+            var _this = this;
+            var time = this.options.time;
+            var speed = n / time;
             var t = -1;
-            var stop=false;
+            var stop = false;
             var gd = function () {
-                if(t!=-1){
+                if (t != -1) {
                     clearTimeout(t);
                 }
-                 _this.run(ul,ul2,temp);
-                if (temp === -n) {
-                    temp = 0;
-
-                }else{
-                    temp=temp-speed;
+                _this.run(temp);
+                if (_this.options.dir === 'left' || _this.options.dir === 'top') {
+                    if (temp === -n) {
+                        temp = 0;
+                    } else {
+                        temp = temp - speed;
+                    }
+                } else {
+                    if (temp === 0) {
+                        temp = -n;
+                    } else {
+                        temp = temp + speed;
+                    }
                 }
-                if(!stop){
-                    t = setTimeout(gd,time);
+                if (!stop) {
+                    t = setTimeout(gd, time);
                 }
 
             };
             gd();
-            xxw.addEvent(_this.div,'mouseover',function(){
-               stop=true;
+            xxw.addEvent(_this.div, 'mouseover', function () {
+                stop = true;
             });
-            xxw.addEvent(_this.div,'mouseleave',function(){
-                stop=false;
+            xxw.addEvent(_this.div, 'mouseleave', function () {
+                stop = false;
                 gd();
             });
         },
-        run:function(ul,ul2,css){
-            if (this.options.dir === 'left') {
-                ul.style.cssText = ul2.style.cssText = 'left:' + css + 'px';
+        run: function (css) {
+            if (this.options.dir === 'left' || this.options.dir === 'right') {
+                this.obj.elements[0].scrollLeft=(0-css);
             } else {
-                ul.style.cssText = ul2.style.cssText = 'top:' + css + 'px';
+                this.obj.elements[0].scrollTop=(0-css);
             }
+        },
+        setting: function (div, ul) {
+            var n = this.options.list.length;
+            var ul2 = ul.cloneNode(true);
+            var total;
+            var temp = 0;
+            div.appendChild(ul2);
+            if (this.options.dir === 'left') {
+                div.style.cssText = 'width:' + (n * (this.options.w + 20) * 2) + 'px';
+                total = this.options.list.length * (this.options.w + 20);
+            } else if (this.options.dir === 'right') {
+                div.style.cssText = 'width:' + (n * (this.options.w + 20) * 2) + 'px';
+                total = this.options.list.length * (this.options.w + 20);
+                temp = -total;
+            } else if (this.options.dir === 'top') {
+                div.style.cssText = 'height:' + (n * (this.options.h + 20) * 2) + 'px';
+                total = this.options.list.length * (this.options.h + 20);
+            } else {
+                div.style.cssText = 'height:' + (n * (this.options.h + 20) * 2) + 'px';
+                total = this.options.list.length * (this.options.h + 20);
+                temp = -total;
+            }
+
+            if (this.options.autoRun) {
+          //    this.autoRun(temp, total);
+            }
+
         }
 
     };
