@@ -35,6 +35,8 @@
 <input value="a" id="inp">
 
 <div id="gd" style="width: 500px;height: 300px"></div>
+<h2><a id="l">左</a><a id="r">右</a></h2>
+
 <div id="gd2" style="width: 500px;height: 300px"></div>
 <div id="gd3" style="width: 100px;height: 500px"></div>
 <div id="gd4" style="width: 100px;height: 500px"></div>
@@ -146,7 +148,11 @@
             w:100,
             h:100,
             time:100,
-            dir:'left'
+            dir:'left',
+            type:'line',
+            left:'#l',
+            right:'#r',
+            autoRun:false
         })
 //        xxw('#gd2').gundong({
 //            list: [

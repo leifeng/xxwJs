@@ -92,7 +92,7 @@
                 if (this.classList) {
                     this.classList.add(str);
                 } else {
-                    this.className = str+' '+this.className;
+                    this.className = str + ' ' + this.className;
                 }
             });
             return this;
@@ -684,13 +684,13 @@
             w: 100,
             h: 100,
             autoRun: true,
-            type:'line',
-            left:null,
-            right:null
-        }
+            type: 'line',
+            left: null,
+            right: null
+        };
         this.extend(defaults, options);
         return new fn.gundong.prototype.init(this, defaults);
-    }
+    };
     fn.gundong.prototype = {
         init: function (obj, options) {
             this.options = options;
@@ -728,18 +728,19 @@
             this.setting(div, ul);
 
         },
-        autoRun: function (temp, n) {
-            var _this = this;
-            var time = this.options.time;
-            var speed = n / time;
-            var t = -1;
-            var stop = false;
+        run: function (temp, n, speed, time) {
+            var _this = this,
+                t = -1,
+                t2 = -1,
+                stop = false,
+                left = this.options.left,
+                right = this.options.right,
+                dir,
+                temp = temp,
+                time2;
             var gd = function () {
-                if (t != -1) {
-                    clearTimeout(t);
-                }
-                _this.run(temp);
-                if (_this.options.dir === 'left' || _this.options.dir === 'top') {
+                dir = arguments[0] || _this.options.dir;
+                if (dir === 'left' || dir === 'top') {
                     if (temp === -n) {
                         temp = 0;
                     } else {
@@ -752,10 +753,13 @@
                         temp = temp + speed;
                     }
                 }
-                if (!stop) {
+                _this.setCss(temp);
+                if (!stop && _this.options.autoRun) {
+                    if (t != -1) {
+                        clearTimeout(t);
+                    }
                     t = setTimeout(gd, time);
                 }
-
             };
             gd();
             xxw.addEvent(_this.div, 'mouseover', function () {
@@ -765,40 +769,82 @@
                 stop = false;
                 gd();
             });
+            if (this.options.left && this.options.right) {
+                if (this.options.type === 'line') {
+                    time2=100
+                } else {
+                    time2 = 2000;
+                }
+                xxw(left).on('mousedown', function () {
+                    stop = true;
+                    t2 = setInterval(function () {
+                        gd('left');
+                    }, time2);
+                });
+                xxw(left).on('mouseup', function () {
+                    stop = false;
+                    clearInterval(t2);
+                    if(_this.options.autoRun){
+                        gd();
+                    }
+
+                });
+                xxw(right).on('mousedown', function () {
+                    stop = true;
+                    t2 = setInterval(function () {
+                        gd('right');
+                    }, time2);
+                });
+                xxw(right).on('mouseup', function () {
+                    stop = false;
+                    clearInterval(t2);
+                    if(_this.options.autoRun){
+                        gd();
+                    }
+                });
+            }
         },
-        run: function (css) {
+        setCss: function (css) {
             if (this.options.dir === 'left' || this.options.dir === 'right') {
-                this.obj.elements[0].scrollLeft=(0-css);
+                this.obj.elements[0].scrollLeft = (0 - css);
             } else {
-                this.obj.elements[0].scrollTop=(0-css);
+                this.obj.elements[0].scrollTop = (0 - css);
             }
         },
         setting: function (div, ul) {
-            var n = this.options.list.length;
-            var ul2 = ul.cloneNode(true);
-            var total;
-            var temp = 0;
+            var _this = this,
+                n = this.options.list.length,
+                ul2 = ul.cloneNode(true),
+                total,
+                temp = 0,
+                time = this.options.time,
+                speed;
             div.appendChild(ul2);
             if (this.options.dir === 'left') {
                 div.style.cssText = 'width:' + (n * (this.options.w + 20) * 2) + 'px';
                 total = this.options.list.length * (this.options.w + 20);
+                speed = this.options.w + 20;
             } else if (this.options.dir === 'right') {
                 div.style.cssText = 'width:' + (n * (this.options.w + 20) * 2) + 'px';
                 total = this.options.list.length * (this.options.w + 20);
+                speed = this.options.w + 20;
                 temp = -total;
             } else if (this.options.dir === 'top') {
                 div.style.cssText = 'height:' + (n * (this.options.h + 20) * 2) + 'px';
                 total = this.options.list.length * (this.options.h + 20);
+                speed = this.options.h + 20;
             } else {
                 div.style.cssText = 'height:' + (n * (this.options.h + 20) * 2) + 'px';
                 total = this.options.list.length * (this.options.h + 20);
+                speed = this.options.h + 20;
                 temp = -total;
             }
-
-            if (this.options.autoRun) {
-          //    this.autoRun(temp, total);
+            if (this.options.type === 'line') {
+                speed =total / time;
+            } else {
+                time = 2000;
             }
-
+            this.run(temp, total, speed, time);
         }
 
     };
