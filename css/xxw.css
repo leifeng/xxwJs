@@ -194,6 +194,9 @@
     text-align: center;
     cursor: pointer;
     z-index: 3;
+    filter:alpha(opacity=50);
+    opacity: 0.5;
+    -moz-opacity:0.5;
 }
 
 .xxw_lunBuo_nav1:hover {
@@ -219,9 +222,16 @@
     height: 23px;
     line-height: 23px;
     left: 0;
-    background-color: rgba(76, 76, 76, 0.67);
+    background-color: rgb(76, 76, 76);
+    filter:alpha(opacity=50);
+    opacity: 0.5;
+    -moz-opacity:0.5;
     color: #fff;
     z-index: 3;
+    font-weight: bold;
+    FONT-SIZE: 14px;
+    TEXT-INDENT: 10px;
+    cursor: pointer;
 }
 
 .xxw_lunBuo_nav2 {
@@ -236,6 +246,9 @@
     cursor: pointer;
     z-index: 3;
     font-size: 0px;
+    filter:alpha(opacity=50);
+    opacity: 0.5;
+    -moz-opacity:0.5;
 }
 
 .xxw_lunBuo_nav2:hover {
@@ -249,9 +262,17 @@
     height: 23px;
     line-height: 23px;
     left: 0;
-    background-color: rgba(76, 76, 76, 0.67);
+    background-color: rgb(76, 76, 76);
+    filter:alpha(opacity=50);
+    opacity: 0.5;
+    -moz-opacity:0.5;
     color: #fff;
     z-index: 3;
+    font-weight: bold;
+    FONT-SIZE: 14px;
+    TEXT-INDENT: 10px;
+    cursor: pointer;
+
 }
 
 /*----图片切换----*/

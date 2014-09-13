@@ -511,8 +511,12 @@
             }
             for (var i = 0; i < this.num; i++) {
                 var a = document.createElement('a');
+                var link=document.createElement('a');
                 var img = document.createElement('img');
-                obj.addChild(a).addChild(img);
+                link.appendChild(img);
+                obj.addChild(a).addChild(link);
+                link.href = _this.options.img[i].url;
+                link.target = '_blank';
                 img.className = 'xxw_lunBo_img';
                 img.src = this.options.img[i].src;
                 a.className = 'xxw_lunBuo_nav' + this.options.style + ' xxw_lunBuo_a_link' + this.options.style;
@@ -524,9 +528,6 @@
                     xxw.addEvent(a, 'mouseover', function () {
                         _this.index = i + 1;
                         _this.show(i + 1);
-                    });
-                    xxw.addEvent(img, 'click', function () {
-                        location.href = _this.options.img[i].url;
                     });
                 })(i)
             }
