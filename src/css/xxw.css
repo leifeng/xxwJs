@@ -36,7 +36,7 @@
 }
 
 * html, * html body {
-    background-image: url(about:blank);
+    background-image: url("about:blank");
     background-attachment: fixed;
 }
 
@@ -176,11 +176,11 @@
 }
 
 .xxw_lunBuo_a_hover2 {
-    background-image: url("../xxw/lunbuo1.png");
+    background-image: url("../images/lunbuo1.png");
 }
 
 .xxw_lunBuo_a_link2 {
-    background-image: url("../xxw/lunbuo2.png");
+    background-image: url("../images/lunbuo2.png");
 }
 
 .xxw_lunBuo_nav1 {
@@ -252,7 +252,7 @@
 }
 
 .xxw_lunBuo_nav2:hover {
-    background-image: url("../xxw/lunbuo1.png");
+    background-image: url("../images/lunbuo1.png");
 }
 
 .xxw_lunBuo_title2 {
