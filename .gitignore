@@ -1,2 +1,8 @@
 /.idea
-/web.config
+
+/node_modules/grunt-contrib-jshint
+/node_modules/grunt-contrib-cssmin/node_modules/chalk/node_modules/ansi-styles
+/node_modules/grunt
+/node_modules/grunt-contrib-cssmin
+/node_modules/grunt-contrib-uglify
+/node_modules/grunt-contrib-requirejs

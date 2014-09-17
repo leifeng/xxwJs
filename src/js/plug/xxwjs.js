@@ -1,7 +1,7 @@
 /**
  * Created by chuanlong on 2014/8/1.
  */
-
+'use strict';
 define(function () {
     var xxw = function (selector, context) {
         return new fn.init(selector, context);
@@ -147,47 +147,11 @@ define(function () {
             for (var key in b) {
                 a[key] = b[key];
             }
+            return a;
         }
     };
     fn.init.prototype = fn;
     xxw.extend=fn.extend;
-    //fix Event
-    xxw.fixEvent = function (event) {
-        var originalEvent = event;
-        var ev = {
-            originalEvent: originalEvent
-        };
-        var props = "altKey attrChange attrName bubbles button cancelable charCode clientX clientY ctrlKey currentTarget data detail eventPhase fromElement handler keyCode metaKey newValue originalTarget pageX pageY prevValue relatedNode relatedTarget screenX screenY shiftKey srcElement target timeStamp toElement type view wheelDelta which".split(" ");
-        for (var i = props.length; i; i--)
-            ev[props[i]] = originalEvent[props[i]];
-        ev.target = ev.target || ev.srcElement;
-        ev.preventDefault = function () {
-            if (originalEvent.preventDefault)
-                originalEvent.preventDefault();
-            originalEvent.returnValue = false;
-        };
-        ev.stopPropagation = function () {
-            if (originalEvent.stopPropagation)
-                originalEvent.stopPropagation();
-            originalEvent.cancelBubble = true;
-        };
-        if (!ev.relatedTarget && ev.fromElement)
-            ev.relatedTarget = ev.fromElement == ev.target ? event.toElement : ev.fromElement;
-        if (!ev.which && ((ev.charCode || ev.charCode === 0) ? ev.charCode : ev.keyCode))
-            ev.which = ev.charCode || ev.keyCode;
-        if (ev.target.nodeType == 3)
-            ev.target = ev.target.parentNode;
-        if (ev.pageX == null && ev.clientX != null) {
-            var doc = document.documentElement, body = document.body;
-            ev.pageX = ev.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc.clientLeft || 0);
-            ev.pageY = ev.clientY + (doc && doc.scrollTop || body && body.scrollTop || 0) - (doc.clientTop || 0);
-        }
-        if (!ev.which && ev.button)
-            ev.which = (ev.button & 1 ? 1 : (ev.button & 2 ? 3 : (ev.button & 4 ? 2 : 0)));
-        if (!ev.metaKey && ev.ctrlKey)
-            ev.metaKey = ev.ctrlKey;
-        return ev;
-    };
     //ie8 以下选择器
     xxw.Selector = function (selector) {
         var _selector = selector.substring(1);

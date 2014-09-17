@@ -1,6 +1,12 @@
 /**
  * Created by zcl on 14-9-16.
+ *
+ *
+ xxw.cookie.set('zcl','1')
+ xxw.cookie.get('zcl')
+ xxw.cookie.del('zcl')
  */
+'use strict';
 define(function(){
     var cookie = {
         get: function (key) {

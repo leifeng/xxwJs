@@ -1,7 +1,8 @@
 /**
  * Created by zcl on 14-9-16.
  */
-define(['xxw'],function(xxw){
+'use strict';
+define(['xxw'], function (xxw) {
     var ajax = function (options, cb) {
         var xmlHttp;
         var defaults = {
@@ -61,5 +62,5 @@ define(['xxw'],function(xxw){
         }
 
     };
-    return ajax;
-})
+    return  ajax;
+});
