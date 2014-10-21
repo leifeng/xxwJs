@@ -1,8 +1,8 @@
 /**
  * Created by chuanlong on 2014/8/1.
  */
-'use strict';
 define(function () {
+    'use strict';
     var xxw = function (selector, context) {
         return new fn.init(selector, context);
     };
@@ -65,12 +65,12 @@ define(function () {
         html: function (str) {
             this.each(function () {
                 this.innerHTML = str;
-            })
+            });
         },
         hide: function () {
             this.each(function () {
-                this.style.display = 'none'
-            })
+                this.style.display = 'none';
+            });
         },
         text: function (str) {
             this.each(function () {
@@ -81,7 +81,7 @@ define(function () {
         },
         getAttr: function (key) {
             if (!this.isObj()) {
-                this.elements.getAttribute(key)
+                this.elements.getAttribute(key);
             } else {
                 this.elements[0].getAttribute(key);
             }
@@ -89,7 +89,7 @@ define(function () {
         },
         setAttr: function (key, val) {
             this.each(function () {
-                this.setAttribute(key, val)
+                this.setAttribute(key, val);
             });
             return this;
         },
@@ -198,7 +198,7 @@ define(function () {
                 }
             }
             return -1;
-        }
+        };
     }
     if (!Array.prototype.every) {
         Array.prototype.every = function (fn, obj) {
@@ -209,8 +209,8 @@ define(function () {
                     return false;
                 }
             }
-            return true
-        }
+            return true;
+        };
     }
     if (!Array.prototype.some) {
         Array.prototype.some = function (fn, obj) {
@@ -222,7 +222,7 @@ define(function () {
                 }
             }
             return false;
-        }
+        };
     }
     return xxw;
 });

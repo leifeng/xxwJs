@@ -10,7 +10,7 @@
           alert(data);
         }
     });
- lunBu
+
  */
 'use strict';
 define(['xxwOther'], function (other) {
@@ -33,7 +33,7 @@ define(['xxwOther'], function (other) {
         },
         makeDom: function () {
             var obj, main, title, body, a, span, left;
-            left = (other.bodyW / 2 - this.defaults.w / 2);
+            left = (other.clientWidth / 2 - this.defaults.w / 2);
             obj = other.$$('#xxw_Alert');
             if (!obj) {
                 main = document.createElement('div');

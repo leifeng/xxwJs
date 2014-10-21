@@ -10,8 +10,9 @@
  *
  *
  */
-'use strict';
+
 define(['xxw'], function (xxw) {
+    'use strict';
     var json = function (options, cb) {
         var defaults = {
             url: '',
@@ -43,7 +44,7 @@ define(['xxw'], function (xxw) {
             setTimeout(function () {
                 delete window[cbName];
                 script.parentNode.removeChild(script);
-            }, 100)
+            }, 100);
 
         };
         script.src = defaults.url + '?callback=' + cbName + '&' + _data;

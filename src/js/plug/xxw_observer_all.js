@@ -8,8 +8,9 @@
  });
  p.pub('a','text');
  */
-'use strict';
+
 define(function () {
+    'use strict';
     var observer = function () {
         this.id = 0;
         this._event = {};
@@ -38,7 +39,7 @@ define(function () {
     observer.prototype.pub = function (n, arr) {
         if (!this._event[n]) return;
         for (var i = 0; i < this._event[n].length; i++) {
-            this._event[n][i].fn(arr)
+            this._event[n][i].fn(arr);
         }
     };
     observer.prototype.unsub = function (n) {
@@ -51,7 +52,7 @@ define(function () {
                 }
             }
         } else {
-            delete this._event[n]
+            delete this._event[n];
         }
     };
     return observer;

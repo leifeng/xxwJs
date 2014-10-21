@@ -381,3 +381,22 @@
     line-height: 20px;
     height: 20px;
 }
+/*瀑布流*/
+#xxw_waterfall{
+    margin: 0 auto;
+    position: relative;
+}
+.xxw_waterfall_box {
+    float: left;
+    padding: 10px 0 0 10px;
+}
+.xxw_waterfall_pic{
+    border: 1px solid #dadada;
+    padding: 10px;
+    border-radius:10px;
+    box-shadow: 0 0 5px #dadada;
+}
+.xxw_waterfall_pic img{
+    width: 190px;
+    height: auto;
+}

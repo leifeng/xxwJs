@@ -15,8 +15,9 @@
         time: 4000
     });
  */
-'use strict';
+
 define(['xxwOther'], function (other) {
+    'use strict';
     var lunBuo = function (options) {
         return new lunBuo.prototype.init(options);
     };
@@ -74,7 +75,6 @@ define(['xxwOther'], function (other) {
                         that.index = i + 1;
                         that.show(i + 1);
                     });
-
                 })(i);
             }
             this.show(this.index);

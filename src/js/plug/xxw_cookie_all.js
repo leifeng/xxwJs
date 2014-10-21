@@ -6,14 +6,15 @@
  xxw.cookie.get('zcl')
  xxw.cookie.del('zcl')
  */
-'use strict';
+
 define(function(){
+    'use strict';
     var cookie = {
         get: function (key) {
             var _cookie = document.cookie;
             if (_cookie.length > 0) {
                 var start = _cookie.indexOf(key + '=');
-                if (start != -1) {
+                if (start !== -1) {
                     var begin = key.length + 1;
                     var end = _cookie.indexOf(";", begin);
                     if (end === -1) end = _cookie.length;
@@ -25,7 +26,7 @@ define(function(){
         set: function (key, val, time) {
             var ExpireDate = new Date();
             ExpireDate.setTime(ExpireDate.getTime() + (time * 24 * 3600 * 1000));
-            document.cookie = key + '=' + decodeURI(val) + ';expires=' + (time == null ? '' : ExpireDate.toUTCString()) + ';';
+            document.cookie = key + '=' + decodeURI(val) + ';expires=' + (time === null ? '' : ExpireDate.toUTCString()) + ';';
         },
         del: function (key) {
             if (this.get(key)) {
@@ -34,4 +35,4 @@ define(function(){
         }
     };
     return cookie;
-})
+});
