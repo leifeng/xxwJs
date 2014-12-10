@@ -137,6 +137,20 @@ define(function () {
             }
             return arr;
         },
+        getFirstChild: function (parent) {
+            var child = parent.firstChild;
+            while (child.nodeType != 1) {
+                child = child.nextSibling;
+            }
+            return child;
+        },
+        getNextElement: function (el) {
+            var next = el.nextSibling;
+            if (next.nodeType === 1) {
+                return next;
+            }
+            return other.getNextElement(next);
+        },
         getClass: function (parent, cls) {
             var oAll = parent.getElementsByTagName('*');
             var arr = [];
@@ -147,21 +161,21 @@ define(function () {
             }
             return arr;
         },
-        goTo:function(url){
-            var a=document.getElementById('xxw_href');
-            if(!a){
-                a=document.createElement('a');
-                a.id='xxw_href';
-                a.style.display='none';
-                a.target='_blank';
+        goTo: function (url) {
+            var a = document.getElementById('xxw_href');
+            if (!a) {
+                a = document.createElement('a');
+                a.id = 'xxw_href';
+                a.style.display = 'none';
+                a.target = '_blank';
                 document.body.appendChild(a);
             }
-            a.setAttribute('href',url);
-            if(document.all){
+            a.setAttribute('href', url);
+            if (document.all) {
                 a.click();
-            }else{
-                var ev=document.createEvent('HTMLEvents');
-                ev.initEvent('click',false,true);
+            } else {
+                var ev = document.createEvent('HTMLEvents');
+                ev.initEvent('click', false, true);
                 a.dispatchEvent(ev);
             }
         },

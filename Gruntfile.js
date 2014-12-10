@@ -11,7 +11,7 @@ module.exports = function (grunt) {
             },
             static_mappings: {
                 files: [
-                    {src: 'src/js/require.js', dest: 'bulid/js/require.min.js'}
+                    {src: 'src/js/require.js', dest: 'build/js/require.min.js'}
                 ]
             },
             dynamic_mappings: {
@@ -20,7 +20,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: 'src/js/',
                         src: 'plug/*.js',
-                        dest: 'bulid/js/',
+                        dest: 'build/js/',
                         ext: '.min.js'
                     }
                 ]
@@ -33,7 +33,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: 'src/css/',
                         src: '*.css',
-                        dest: 'bulid/css/',
+                        dest: 'build/css/',
                         ext: '.min.css'
                     }
                 ]

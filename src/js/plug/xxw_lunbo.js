@@ -38,7 +38,7 @@ define(['xxwOther'], function (other) {
             this.imgArr = [];
             this.num = options.img.length;
             this.obj = other.$$(this.options.panel);
-            this.obj.className = 'xxw_relative xxw_over';
+            this.obj.className='xxw_relative xxw_over '+ this.obj.className;
             this.makeDom(this.obj);
         },
         makeDom: function (obj) {
